@@ -8,7 +8,7 @@ public class BasketService implements BasketServiceInterface{
 
     private final PriceServiceInterface priceServiceInterface;
 
-    public BasketService(PriceService priceServiceInterface) {
+    public BasketService(PriceServiceInterface priceServiceInterface) {
         this.priceServiceInterface = priceServiceInterface;
     }
 

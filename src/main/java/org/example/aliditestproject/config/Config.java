@@ -1,6 +1,10 @@
 package org.example.aliditestproject.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.example.aliditestproject.services.BasketService;
+import org.example.aliditestproject.services.BasketServiceInterface;
+import org.example.aliditestproject.services.PriceService;
+import org.example.aliditestproject.services.PriceServiceInterface;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
@@ -18,5 +22,15 @@ public class Config {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCaffeine(Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES));
         return caffeineCacheManager;
+    }
+
+    @Bean
+    public BasketServiceInterface basketServiceInterface() {
+        return new BasketService(priceServiceInterface());
+    }
+
+    @Bean
+    public PriceServiceInterface priceServiceInterface() {
+        return new PriceService();
     }
 }

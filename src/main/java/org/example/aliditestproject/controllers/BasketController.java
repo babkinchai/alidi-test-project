@@ -14,7 +14,7 @@ public class BasketController {
 
     private final BasketServiceInterface basketServiceInterface;
 
-    public BasketController(BasketService basketServiceInterface) {
+    public BasketController(BasketServiceInterface basketServiceInterface) {
         this.basketServiceInterface = basketServiceInterface;
     }
 

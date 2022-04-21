@@ -14,13 +14,13 @@ public class BasketService implements BasketServiceInterface{
 
     @Override
     public BasketDto calculateBasket(BasketDto basketDto) {
-        basketDto.getProductList().forEach(productsDto -> {
+        basketDto.getProductList().forEach(
+                productsDto -> {
+                    productsDto.setProductSum(priceServiceInterface.getPrice(productsDto.getProductId()) * productsDto.getCount());
+                    basketDto.addBasketSum(productsDto.getProductSum());
+                }
+        );
 
-                Float price=priceServiceInterface.getPrice(productsDto.getProductId());
-                productsDto.setProductSum(price * productsDto.getCount());
-                basketDto.addBasketSum(productsDto.getProductSum());
-
-        });
         return basketDto;
     }
 
